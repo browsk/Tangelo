@@ -7,14 +7,20 @@
 
 package org.pomelo.message
 
-class MessageEncoder(message : Message) {
-    val buffer = new Array[byte](message.length)
-    private var index = 0
+import scala.collection.mutable.ArrayBuffer
 
+class MessageEncoder {
+    val buffer = new ArrayBuffer[byte]
 
-    def append(data : AnyType) = {
-        case data : Int => println("int")
+    def append(data : Any) = {
+        data match {
+            case i: Int =>
+                buffer += (i >> 24).toByte
+                buffer += (i >> 16).toByte
+                buffer += (i >> 8).toByte
+                buffer += i.toByte
+        }
     }
 
-
+    
 }
