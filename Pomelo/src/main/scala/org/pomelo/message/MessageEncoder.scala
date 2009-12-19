@@ -22,6 +22,13 @@ class MessageEncoder {
             case s: String =>
                 append(s.length)
                 buffer ++= s.map( c => c.toByte )
+            case b: Byte =>
+                buffer += b
+            case x: AnyRef =>
+                val klass = x.getClass()
+                throw new IllegalArgumentException("can't encode data of type " + klass)
+            case x: Any =>
+                throw new IllegalArgumentException("can't encode data : " + x)
         }
     }
 

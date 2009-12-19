@@ -5,6 +5,8 @@
 
 package org.pomelo.message
 
+import scala.collection.mutable.ArrayBuffer
+
 trait MessageProperties {
   val headerLength = 9
 }
@@ -16,7 +18,7 @@ abstract class Message(mesgType : Byte, messageId : Int) extends MessageProperti
   val msgType : Byte = mesgType
   def length : Int
   
-  def encode() : Array[Byte]
+  def encode() : ArrayBuffer[Byte]
 }
 
 object Message {

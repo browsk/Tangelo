@@ -17,7 +17,7 @@ class MessageSpec extends Spec with ShouldMatchers {
         }
 
         val testString = "testing 123"
-        it ("should return" + 4 + testString.length + " for" + testString) {
+        it ("should return length" + 4 + testString.length + " for" + testString) {
             Message.encodedStringLength(testString) should equal (4 + testString.length)
         }
 

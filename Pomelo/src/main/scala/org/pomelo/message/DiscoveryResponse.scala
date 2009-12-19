@@ -18,7 +18,10 @@ class DiscoveryResponse(query : DiscoveryQuery) extends Message(91, query.id) {
             + Message.encodedStringLength(Settings.VERSION)
             
     override def encode() = {
-        var data = new Array[byte](length)
-        data
+    
+        val encoder = new MessageEncoder
+        encoder.append(length)
+
+        encoder.buffer
     }
 }
