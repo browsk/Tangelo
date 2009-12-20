@@ -11,7 +11,7 @@ class DiscoveryResponse(query : DiscoveryQuery) extends Message(91, query.id) {
     abstract case class DiscoveryQueryType() extends AbstractMessageType(91)
     type MessageType = DiscoveryQueryType
 
-    override def length = headerLength
+    override def length = Message.headerLength
             + Message.encodedStringLength(Settings.PORT)
             + Message.encodedStringLength(Settings.ADDRESS)
             + Message.encodedStringLength(Settings.COMMENT)

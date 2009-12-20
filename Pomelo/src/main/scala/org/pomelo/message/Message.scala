@@ -18,7 +18,7 @@ trait MessageProperties {
  * @param   messageId     the unique message id
  *
  */
-abstract class Message(mesgType : Byte, messageId : Int) extends MessageProperties{
+abstract class Message(mesgType : Byte, messageId : Int) {
   type MessageType <: AbstractMessageType
 
   /**
@@ -42,7 +42,7 @@ abstract class Message(mesgType : Byte, messageId : Int) extends MessageProperti
   def encode() : ArrayBuffer[Byte]
 }
 
-object Message {
+object Message extends MessageProperties {
     def encodedStringLength(string : String ) = 4 + string.length
 
     //def encodeIntToPosition()

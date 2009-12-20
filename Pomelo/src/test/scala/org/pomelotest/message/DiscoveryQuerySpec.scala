@@ -19,7 +19,7 @@ class DiscoveryQuerySpec  extends Spec with ShouldMatchers {
         describe("constructed with client version '" + clientVersion + "'") {
             val id = 123
             val message = new DiscoveryQuery(id, clientVersion)
-            val expectedLength = message.headerLength + Message.encodedStringLength(clientVersion)
+            val expectedLength = Message.headerLength + Message.encodedStringLength(clientVersion)
 
             it("should be " + expectedLength + " bytes in length") {
                 message.length should equal (expectedLength)
@@ -87,7 +87,7 @@ class DiscoveryQuerySpec  extends Spec with ShouldMatchers {
         describe("with an empty client version string") {
             val id = 123
             val message = new DiscoveryQuery(id, "")
-            val expectedLength = message.headerLength + Message.encodedStringLength("")
+            val expectedLength = Message.headerLength + Message.encodedStringLength("")
 
             it ("should have a length of " + expectedLength) {
                 message.length should equal (expectedLength)
