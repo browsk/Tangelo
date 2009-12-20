@@ -11,11 +11,19 @@ class DiscoveryQuery(id: Int, version : String) extends Message(90, id) {
     case class DiscoveryQueryType() extends AbstractMessageType(90)
     type MessageType = DiscoveryQueryType
 
-    val clientVersion = version
-
     override val length = headerLength + version.length + 4
 
+    val clientVersion = version
+
+
     override def encode() = {
-        new ArrayBuffer[Byte]
+        val encoder = new MessageEncoder
+
+        encoder.append(length)
+        encoder.append(msgType)
+        encoder.append(id)
+        encoder.append(version)
+
+        encoder.buffer
     }
 }

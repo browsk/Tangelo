@@ -11,13 +11,34 @@ trait MessageProperties {
   val headerLength = 9
 }
 
+/**
+ * Abstract class to represent a message
+ *
+ * @param   mesgType      the message type byte from the xbmsp doucment
+ * @param   messageId     the unique message id
+ *
+ */
 abstract class Message(mesgType : Byte, messageId : Int) extends MessageProperties{
   type MessageType <: AbstractMessageType
 
-  val id : Int = messageId
-  val msgType : Byte = mesgType
+  /**
+   * the length of the message in bytes once the message has been encoded
+   */
   def length : Int
-  
+
+  /**
+   * the 8bit message type identifier from the xbmsp
+   */
+  val msgType : Byte = mesgType
+
+  /**
+   * unique message id
+   */
+  val id : Int = messageId
+
+  /**
+   * encode the message into an ArrayBuffer
+   */
   def encode() : ArrayBuffer[Byte]
 }
 
