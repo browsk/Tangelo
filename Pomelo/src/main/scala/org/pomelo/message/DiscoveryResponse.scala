@@ -21,6 +21,12 @@ class DiscoveryResponse(query : DiscoveryQuery) extends Message(91, query.id) {
     
         val encoder = new MessageEncoder
         encoder.append(length)
+        encoder.append(msgType)
+        encoder.append(id)
+        encoder.append(Settings.ADDRESS)
+        encoder.append(Settings.PORT)
+        encoder.append(Settings.VERSION)
+        encoder.append(Settings.COMMENT)
 
         encoder.buffer
     }

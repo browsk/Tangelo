@@ -149,6 +149,23 @@ class MessageEncoderSpec extends Spec with ShouldMatchers {
             }
         }
 
+        describe("appending an empty string") {
+            val encoder = new MessageEncoder
+
+            encoder.append("")
+
+            it ("should result in a buffer length of 4") {
+                encoder.buffer.length should equal (4)
+            }
+
+            it ("should result in the correct byte sequence being in the buffer") {
+                encoder.buffer(0) should equal (0)
+                encoder.buffer(1) should equal (0)
+                encoder.buffer(2) should equal (0)
+                encoder.buffer(3) should equal (0)
+            }
+        }
+
         describe("appending an unsupported reference type") {
             it ("should throw an IllegalArgumentException") {
                 val encoder = new MessageEncoder
