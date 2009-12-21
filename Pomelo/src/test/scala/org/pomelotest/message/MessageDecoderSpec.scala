@@ -72,5 +72,31 @@ class MessageDecoderSpec extends Spec with ShouldMatchers {
                 decoder.getInt() should equal (123)
             }
         }
+
+        describe("when initialised with a single byte 0x01") {
+            val data : List[Byte] = List(0x01)
+            val buffer = new ArrayBuffer[Byte]
+            buffer.appendAll(data)
+
+            val decoder = new MessageDecoder(buffer)
+
+            it ("should decode the byte 0x01") {
+                decoder.getByte() should equal(0x01)
+            }
+        }
+
+        describe("when initialised with a byte sequence") {
+            val data : List[Byte] = List(0x01, (0xaa).asInstanceOf[Byte], 0x55)
+            val buffer = new ArrayBuffer[Byte]
+            buffer.appendAll(data)
+
+            val decoder = new MessageDecoder(buffer)
+
+            it ("should decode the correct byte sequence") {
+                decoder.getByte() should equal(0x01)
+                decoder.getByte() should equal((0xaa).asInstanceOf[Byte])
+                decoder.getByte() should equal(0x55)
+            }
+        }
     }
 }
