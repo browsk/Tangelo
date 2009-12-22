@@ -24,5 +24,4 @@ class MessageDecoder(data : Buffer[Byte]) {
     }
 
     def getByte() : Byte = it.next()
-
 }

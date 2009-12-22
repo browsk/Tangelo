@@ -8,7 +8,7 @@ object Settings {
     /**
      * The port that the server is listening on. Defaults to 4040
      */
-    var PORT : String = "4040"
+    var PORT : String = "1400"
 
     /**
      * The IP address for the server. An empty string indicates the IP address
