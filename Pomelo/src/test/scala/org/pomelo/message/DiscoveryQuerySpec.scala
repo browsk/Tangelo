@@ -5,6 +5,8 @@
 
 package org.pomelo.message
 
+import scala.collection.mutable.ArrayBuffer
+
 import org.scalatest.Spec
 import org.scalatest.matchers.ShouldMatchers
 
@@ -13,6 +15,26 @@ class DiscoveryQuerySpec  extends Spec with ShouldMatchers {
     val clientVersion = "Client version string"
 
     describe("A discovery query message") {
+        describe("when constructed with a buffer containing a valid message") {
+            val data = (new DiscoveryQuery(345, clientVersion)).encode
+
+            val buffer = new ArrayBuffer[Byte]
+            buffer.appendAll(data)
+
+            val message = DiscoveryQuery(buffer)
+            
+            it ("should have a message id of 345") {
+                message.id should equal (345)
+            }
+
+            it ("should have a length of 34") {
+                message.length should equal(34)
+            }
+
+            it ("should have a client version string of " + clientVersion) {
+                message.clientVersion should equal(clientVersion)
+            }
+        }
         describe("constructed with client version '" + clientVersion + "'") {
             val id = 123
             val message = new DiscoveryQuery(id, clientVersion)
@@ -102,6 +124,5 @@ class DiscoveryQuerySpec  extends Spec with ShouldMatchers {
                 message.msgType should equal (90)
             }
         }
-
     }
 }
