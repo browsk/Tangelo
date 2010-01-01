@@ -22,6 +22,6 @@ package org.pomelo.utils
 import org.slf4j.LoggerFactory
 
 object PomeloLoggerFactory {
-    def getLogger(klass: Class[AnyRef]) : PomeloLogger = new Slf4jLogger(LoggerFactory.getLogger(klass))
-    def getLogger(name: String) : PomeloLogger = new Slf4jLogger(LoggerFactory.getLogger(name))
+    def getLoggerForClass(klass: Class[AnyRef]) : PomeloLogger = new Slf4jLogger(LoggerFactory.getLogger(klass))
+    def getLoggerForName(name: String) : PomeloLogger = new Slf4jLogger(LoggerFactory.getLogger(name))
 }
