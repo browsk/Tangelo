@@ -1,4 +1,4 @@
-package org.pomelotest.message
+package org.pomelo.message
 
 import org.pomelo.message.MessageDecoder
 import scala.collection.mutable.ArrayBuffer

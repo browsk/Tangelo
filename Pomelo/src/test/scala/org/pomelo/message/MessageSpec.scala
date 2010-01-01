@@ -3,7 +3,7 @@
  *
  */
 
-package org.pomelotest.message
+package org.pomelo.message
 
 import org.pomelo.message.Message
 import org.scalatest.Spec

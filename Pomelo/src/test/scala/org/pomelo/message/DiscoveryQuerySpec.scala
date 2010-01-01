@@ -3,7 +3,7 @@
  *
  */
 
-package org.pomelotest.message
+package org.pomelo.message
 
 import org.pomelo.message.MessageProperties
 import org.pomelo.message.Message

@@ -17,7 +17,7 @@
  *
  */
 
-package org.pomelotest.server
+package org.pomelo.server
 
 import scala.actors.Actor
 import org.scalatest.Spec
