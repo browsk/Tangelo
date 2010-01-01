@@ -5,9 +5,6 @@
 
 package org.pomelo.message
 
-import org.pomelo.message.DiscoveryResponse
-import org.pomelo.message.DiscoveryQuery
-import org.pomelo.message.Message
 import org.pomelo.server.Settings
 import org.scalatest.Spec
 import org.scalatest.matchers.ShouldMatchers

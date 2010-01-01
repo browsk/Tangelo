@@ -22,7 +22,6 @@ package org.pomelo.server
 import scala.actors.Actor
 import org.scalatest.Spec
 import org.scalatest.matchers.ShouldMatchers
-import org.pomelo.server.DiscoveryServiceReaderThread
 import java.net._
 import org.pomelo.utils._
 

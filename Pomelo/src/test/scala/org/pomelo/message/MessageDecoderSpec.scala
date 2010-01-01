@@ -1,6 +1,5 @@
 package org.pomelo.message
 
-import org.pomelo.message.MessageDecoder
 import scala.collection.mutable.ArrayBuffer
 import org.scalatest.Spec
 import org.scalatest.matchers.ShouldMatchers

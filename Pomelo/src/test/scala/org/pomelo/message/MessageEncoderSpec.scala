@@ -4,7 +4,7 @@
  */
 
 package org.pomelo.message
-import org.pomelo.message.MessageEncoder
+
 import org.scalatest.Spec
 import org.scalatest.matchers.ShouldMatchers
 
