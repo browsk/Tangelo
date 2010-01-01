@@ -53,13 +53,13 @@ class DiscoveryServiceReaderSpec extends Spec with ShouldMatchers {
 
             val testPort = 50723
 
-            logger.info("in test ####")
             val reader = new DiscoveryServiceReaderThread(TestListener, testPort)
 
             TestListener.start
             reader.start
 
-            val payload = "hello".getBytes("ASCII")
+            val expectedData : String = "hello"
+            val payload = expectedData.getBytes("ASCII")
             val packet = new DatagramPacket(payload, payload.length, InetAddress.getLocalHost(), testPort)
 
             (new DatagramSocket).send(packet)
@@ -71,6 +71,12 @@ class DiscoveryServiceReaderSpec extends Spec with ShouldMatchers {
 
             TestListener.datagram.getLength() should equal (5)
 
+            val s = new StringBuilder
+            val d = TestListener.datagram
+
+            d.getData().take(d.getLength).foreach(c => s.append(c.asInstanceOf[Char]))
+
+            s.toString should equal (expectedData)
         }
     }
 }
