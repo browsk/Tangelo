@@ -51,7 +51,8 @@ class DiscoveryServiceReaderThread(listener : Actor, port : Int)  extends Thread
             }
         }
         logger.info("DiscoveryService exiting")
-//        if (!socket.isClosed) socket.close
+
+        if (!socket.isClosed) socket.close
     }
 
 }
