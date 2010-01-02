@@ -5,8 +5,10 @@
 
 package org.pomelo.message
 
-abstract case class AbstractMessageType(val id: Byte) {
+case class MessageType(val id: Byte) {
   val messageType = id
 }
+
+case class DiscoveryQueryType() extends MessageType(90)
 
 

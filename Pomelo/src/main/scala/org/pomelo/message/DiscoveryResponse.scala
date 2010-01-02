@@ -8,8 +8,8 @@ package org.pomelo.message
 import org.pomelo.server.Settings
 
 class DiscoveryResponse(query : DiscoveryQuery) extends Message(91, query.id) {
-    abstract case class DiscoveryQueryType() extends AbstractMessageType(91)
-    type MessageType = DiscoveryQueryType
+    abstract case class DiscoveryQueryType() extends MessageType(91)
+    //type MessageType = DiscoveryQueryType
 
     override def length = Message.headerLength +
                 Message.encodedStringLength(Settings.PORT) +

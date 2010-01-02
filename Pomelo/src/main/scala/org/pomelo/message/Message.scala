@@ -6,6 +6,9 @@
 package org.pomelo.message
 
 import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable.Buffer
+
+import utils.PomeloLoggerFactory
 
 trait MessageProperties {
   val headerLength = 9
@@ -19,7 +22,7 @@ trait MessageProperties {
  *
  */
 abstract class Message(mesgType : Byte, messageId : Int) {
-  type MessageType <: AbstractMessageType
+  //type MessageType <: AbstractMessageType
 
   /**
    * the length of the message in bytes once the message has been encoded
@@ -45,5 +48,17 @@ abstract class Message(mesgType : Byte, messageId : Int) {
 object Message extends MessageProperties {
     def encodedStringLength(string : String ) = 4 + string.length
 
-    //def encodeIntToPosition()
+    def fromBuffer(buffer: Buffer[Byte]) : Message = {
+        val msgType = buffer(4)
+
+        PomeloLoggerFactory.getLoggerForName("pomelo").debug("Determining message for type " + msgType)
+
+        msgType match {
+            case 90 => DiscoveryQuery(buffer)
+            case _ => {
+                    PomeloLoggerFactory.getLoggerForName("pomelo").info("crap")
+                    null
+                    }
+        }
+    }
 }

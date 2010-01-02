@@ -21,9 +21,8 @@ object DiscoveryQuery {
 }
 
 class DiscoveryQuery(id: Int, version : String) extends Message(90, id) {
-    case class DiscoveryQueryType() extends AbstractMessageType(90)
 
-    type MessageType = DiscoveryQueryType
+    //type MessageType = DiscoveryQueryType
 
     override val length = Message.headerLength + version.length + 4
 
