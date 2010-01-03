@@ -53,7 +53,7 @@ class DiscoveryListenerSpec extends Spec with ShouldMatchers{
             ResponseTestActor.start
             listener.start
             listener ! (new DatagramPacket(data, data.length, new InetSocketAddress("localhost", 7832)))
-            Thread.sleep(100)
+            Thread.sleep(200)
             ResponseTestActor ! "stop"
             listener ! "stop"
             
