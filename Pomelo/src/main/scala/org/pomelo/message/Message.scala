@@ -62,4 +62,10 @@ object Message extends MessageProperties {
                     }
         }
     }
+
+    def encodeHeader(message: Message, encoder: MessageEncoder) = {
+        encoder.append(message.payloadLength)
+        encoder.append(message.msgType)
+        encoder.append(message.id)
+    }
 }
