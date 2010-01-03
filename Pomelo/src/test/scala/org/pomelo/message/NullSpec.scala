@@ -33,7 +33,7 @@ class NullSpec extends Spec with ShouldMatchers {
 
     describe("A null message when encoded") {
 
-        val buffer = (new MessageEncoder(new Null(123))).encode
+        val buffer = (new MessageSerializer(new Null(123))).encode
 
         it("should result in a buffer length of 9") {
             buffer.length should equal(9)

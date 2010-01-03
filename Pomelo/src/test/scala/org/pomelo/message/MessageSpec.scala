@@ -29,7 +29,7 @@ class MessageSpec extends Spec with ShouldMatchers {
         val id = 123
         val clientVersion = "client version string"
         
-        val buffer: Buffer[Byte] = (new MessageEncoder(new DiscoveryQuery(id, clientVersion))).encode()
+        val buffer: Buffer[Byte] = (new MessageSerializer(new DiscoveryQuery(id, clientVersion))).encode()
 
         val mesg = Message.fromBuffer(buffer).asInstanceOf[DiscoveryQuery]
         

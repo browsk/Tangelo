@@ -1,5 +1,5 @@
 /*
- * MessageEncoder.scala
+ * MessageSerializer.scala
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -10,7 +10,7 @@ package org.pomelo.message
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.Buffer
 
-class MessageEncoder(message: Serializable) {
+class MessageSerializer(message: Serializable) {
     val buffer = new ArrayBuffer[byte]
 
     def encode() : Buffer[Byte] = {

@@ -16,7 +16,7 @@ class DiscoveryQuerySpec  extends Spec with ShouldMatchers {
 
     describe("A discovery query message") {
         describe("when constructed with a buffer containing a valid message") {
-            val data = (new MessageEncoder(new DiscoveryQuery(345, clientVersion))).encode
+            val data = (new MessageSerializer(new DiscoveryQuery(345, clientVersion))).encode
 
             val buffer = new ArrayBuffer[Byte]
             buffer.appendAll(data)
@@ -61,12 +61,12 @@ class DiscoveryQuerySpec  extends Spec with ShouldMatchers {
             }
 
             it ("should encode to a buffer of length " + expectedLength) {
-                val buffer = (new MessageEncoder(message)).encode
+                val buffer = (new MessageSerializer(message)).encode
                 buffer.length should equal (expectedLength)
             }
 
             describe ("that is encoded to a buffer") {
-                val buffer = (new MessageEncoder(message)).encode
+                val buffer = (new MessageSerializer(message)).encode
 
                 it ("should have the correct message length")
                 {

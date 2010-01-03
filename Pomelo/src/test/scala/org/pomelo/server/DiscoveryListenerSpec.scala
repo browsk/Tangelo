@@ -48,7 +48,7 @@ class DiscoveryListenerSpec extends Spec with ShouldMatchers{
         describe("when receiving a valid discovery query packet") {
 
             val id = 12345
-            val data = (new MessageEncoder(new DiscoveryQuery(id, "client string"))).encode().toArray[Byte]
+            val data = (new MessageSerializer(new DiscoveryQuery(id, "client string"))).encode().toArray[Byte]
 
             ResponseTestActor.start
             listener.start

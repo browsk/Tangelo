@@ -20,12 +20,12 @@
 package org.pomelo.io
 
 import java.io.OutputStream
-import message.MessageEncoder
+import message.MessageSerializer
 import message.Serializable
 
 class StreamMessageWriter(stream: OutputStream) extends MessageWriter {
     def write(message: Serializable) = {
-        val data = (new MessageEncoder(message)).encode().toArray[Byte]
+        val data = (new MessageSerializer(message)).encode().toArray[Byte]
         stream.write(data)
     }
 }

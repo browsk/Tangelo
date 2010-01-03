@@ -19,7 +19,7 @@
 
 package org.pomelo.io
 
-import message.MessageEncoder
+import message.MessageSerializer
 import message.Serializable
 
 import utils.PomeloLoggerFactory
@@ -32,7 +32,7 @@ object UdpMessageWriter {
 
 class UdpMessageWriter(destination: SocketAddress) extends MessageWriter {
     def write(message: Serializable) = {
-        val data = (new MessageEncoder(message)).encode().toArray[Byte]
+        val data = (new MessageSerializer(message)).encode().toArray[Byte]
         val packet = new DatagramPacket(data, data.length, destination)
 
         val logger = PomeloLoggerFactory.getLoggerForName("UDP")
