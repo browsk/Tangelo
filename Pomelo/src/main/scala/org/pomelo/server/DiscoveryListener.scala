@@ -36,8 +36,11 @@ class DiscoveryListener(responseService : Actor) extends Actor {
                             logger.debug("Sending response")
 
                             val writer = new UdpMessageWriter(packet.getSocketAddress)
+                            val query = message.asInstanceOf[DiscoveryQuery]
 
-                            responseService ! new DiscoveryQueryCommand(message.asInstanceOf[DiscoveryQuery], writer)
+                            logger.info("Query :" + query.toString)
+
+                            responseService ! new DiscoveryQueryCommand(query, writer)
                         }
                         else {
                             logger.info("Got an unknown message of type " + data(4))

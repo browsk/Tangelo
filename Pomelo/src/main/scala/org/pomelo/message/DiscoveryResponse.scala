@@ -20,7 +20,7 @@ class DiscoveryResponse(query : DiscoveryQuery) extends Message(91, query.id) {
     override def encode() = {
     
         val encoder = new MessageEncoder
-        encoder.append(length)
+        encoder.append(payloadLength)
         encoder.append(msgType)
         encoder.append(id)
         encoder.append(Settings.ADDRESS)

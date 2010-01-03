@@ -44,7 +44,7 @@ class DiscoveryResponseSpec extends Spec with ShouldMatchers{
                 buffer(0) should equal(0)
                 buffer(1) should equal(0)
                 buffer(2) should equal(0)
-                buffer(3) should equal(expectedLength)
+                buffer(3) should equal(discoveryResponse.payloadLength)
             }
 
             it ("should have the correct type") {

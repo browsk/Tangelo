@@ -31,6 +31,10 @@ class DiscoveryQuerySpec  extends Spec with ShouldMatchers {
                 message.length should equal(34)
             }
 
+            it ("should have a payload length of 30") {
+                message.payloadLength should equal(30)
+            }
+
             it ("should have a client version string of " + clientVersion) {
                 message.clientVersion should equal(clientVersion)
             }
@@ -69,7 +73,7 @@ class DiscoveryQuerySpec  extends Spec with ShouldMatchers {
                     buffer(0) should equal(0)
                     buffer(1) should equal(0)
                     buffer(2) should equal(0)
-                    buffer(3) should equal(expectedLength)
+                    buffer(3) should equal(message.payloadLength)
                 }
 
                 it ("should have the correct type") {

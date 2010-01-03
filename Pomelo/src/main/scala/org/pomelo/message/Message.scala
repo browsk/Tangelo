@@ -29,6 +29,7 @@ abstract class Message(mesgType : Byte, messageId : Int) {
    */
   def length : Int
 
+  def payloadLength = length - 4
   /**
    * the 8bit message type identifier from the xbmsp
    */

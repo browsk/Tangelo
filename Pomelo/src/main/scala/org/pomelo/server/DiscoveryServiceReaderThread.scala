@@ -36,7 +36,9 @@ class DiscoveryServiceReaderThread(listener : Actor, port : Int)  extends Thread
             try {
                 socket.receive(packet);
 
-                logger.info("Discovery service rxed data from " + packet.getSocketAddress)
+                logger.info("Discovery service reader rxed data from " + packet.getSocketAddress)
+
+                logger.info(buf.toString)
 
                 listener ! packet
             } catch {
@@ -50,7 +52,7 @@ class DiscoveryServiceReaderThread(listener : Actor, port : Int)  extends Thread
                 }
             }
         }
-        logger.info("DiscoveryService exiting")
+        logger.info("DiscoveryServiceReaderThread exiting")
 
         if (!socket.isClosed) socket.close
     }

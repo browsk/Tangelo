@@ -31,11 +31,15 @@ class DiscoveryQuery(id: Int, version : String) extends Message(90, id) {
     override def encode() = {
         val encoder = new MessageEncoder
 
-        encoder.append(length)
+        encoder.append(payloadLength)
         encoder.append(msgType)
         encoder.append(id)
         encoder.append(version)
 
         encoder.buffer
+    }
+
+    override def toString = {
+        "id:" + id + " version:" + clientVersion
     }
 }
