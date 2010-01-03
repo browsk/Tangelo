@@ -4,9 +4,12 @@ import scala.actors.Actor
 import scala.collection.mutable.ArrayBuffer
 
 import java.net.DatagramPacket
+import java.net.DatagramSocket
 
 import utils.PomeloLoggerFactory
 import message._
+import command._
+import io._
 
 class DiscoveryListener(responseService : Actor) extends Actor {
 
@@ -31,7 +34,10 @@ class DiscoveryListener(responseService : Actor) extends Actor {
                         if(message.getClass() == classOf[DiscoveryQuery])
                         {
                             logger.debug("Sending response")
-                            responseService ! new DiscoveryResponse(message.asInstanceOf[DiscoveryQuery])
+
+                            val writer = new UdpMessageWriter(packet.getSocketAddress)
+
+                            responseService ! new DiscoveryQueryCommand(message.asInstanceOf[DiscoveryQuery], writer)
                         }
                         else {
                             logger.info("Got an unknown message of type " + data(4))

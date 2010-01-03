@@ -24,15 +24,16 @@ import scala.actors.Actor
 import org.scalatest.Spec
 import org.scalatest.matchers.ShouldMatchers
 
-import java.net.DatagramPacket
+import java.net._
 
 import message._
+import command._
 
 object ResponseTestActor extends Actor {
-    var message : Message = null
+    var command : Command = null
     def act() = {
         receive {
-            case m: Message => message = m
+            case c: Command => command = c
             case _ => exit()
         }
     }
@@ -51,17 +52,13 @@ class DiscoveryListenerSpec extends Spec with ShouldMatchers{
 
             ResponseTestActor.start
             listener.start
-            listener ! (new DatagramPacket(data, data.length))
+            listener ! (new DatagramPacket(data, data.length, new InetSocketAddress("localhost", 7832)))
             Thread.sleep(100)
             ResponseTestActor ! "stop"
             listener ! "stop"
             
-            it ("should forward a valid DiscoveryResponse to the response actor") {
-                ResponseTestActor.message.asInstanceOf[DiscoveryResponse] should not equal(null)
-            }
-
-            it ("should forward a DiscoveryResponse with id " + id) {
-                ResponseTestActor.message.id should equal(id)
+            it ("should forward a valid DiscoveryQueryCommand to the response actor") {
+                ResponseTestActor.command.asInstanceOf[DiscoveryQueryCommand] should not equal(null)
             }
         }
     }
