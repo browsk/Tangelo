@@ -19,12 +19,10 @@
 
 package org.pomelo.message
 
-class Ok(id: Int) extends Message(1, id) {
+class Ok(id: Int) extends Message(1, id) with Serializable {
     def length = Message.headerLength
     
-    def encode() = {
-        val encoder = new MessageEncoder
-        Message.encodeHeader(this, encoder)
-        encoder.buffer
+    def sequence() = {
+        List[Any](payloadLength, msgType, id)
     }
 }

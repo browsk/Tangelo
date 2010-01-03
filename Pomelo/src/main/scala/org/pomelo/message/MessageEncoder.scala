@@ -8,10 +8,16 @@
 package org.pomelo.message
 
 import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable.Buffer
 
-class MessageEncoder {
+class MessageEncoder(message: Serializable) {
     val buffer = new ArrayBuffer[byte]
 
+    def encode() : Buffer[Byte] = {
+        message.sequence.foreach(item => append(item))
+        buffer
+    }
+    
     def append(data : Any) : Unit = {
         data match {
             case i: Int =>
@@ -31,6 +37,4 @@ class MessageEncoder {
                 throw new IllegalArgumentException("can't encode data : " + x)
         }
     }
-
-    
 }

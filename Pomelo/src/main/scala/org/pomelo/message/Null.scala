@@ -9,16 +9,12 @@ package org.pomelo.message
 
 import scala.collection.mutable.Buffer
 
-class Null(id: Int) extends Message(10, id) {
+class Null(id: Int) extends Message(10, id) with Serializable {
     
     override def length = Message.headerLength
 
-    override def encode = {
-        val encoder = new MessageEncoder
-
-        Message.encodeHeader(this, encoder)
-
-        encoder.buffer
+    override def sequence() = {
+        List[Any](payloadLength, msgType, id)
     }
 }
 

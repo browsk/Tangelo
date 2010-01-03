@@ -13,19 +13,12 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  *
- *   TcpMessageWriter.scala
+ *   Serializable.scala
  *
  */
 
-package org.pomelo.io
+package org.pomelo.message
 
-import java.io.OutputStream
-import message.MessageEncoder
-import message.Serializable
-
-class StreamMessageWriter(stream: OutputStream) extends MessageWriter {
-    def write(message: Serializable) = {
-        val data = (new MessageEncoder(message)).encode().toArray[Byte]
-        stream.write(data)
-    }
+trait Serializable {
+    def sequence() : Seq[Any]
 }

@@ -20,7 +20,7 @@ object DiscoveryQuery {
     }
 }
 
-class DiscoveryQuery(id: Int, version : String) extends Message(90, id) {
+class DiscoveryQuery(id: Int, version : String) extends Message(90, id) with Serializable {
 
     //type MessageType = DiscoveryQueryType
 
@@ -28,15 +28,8 @@ class DiscoveryQuery(id: Int, version : String) extends Message(90, id) {
 
     val clientVersion = version
 
-    override def encode() = {
-        val encoder = new MessageEncoder
-
-        encoder.append(payloadLength)
-        encoder.append(msgType)
-        encoder.append(id)
-        encoder.append(version)
-
-        encoder.buffer
+    override def sequence() = {
+        List[Any](payloadLength, msgType, id, clientVersion)
     }
 
     override def toString = {

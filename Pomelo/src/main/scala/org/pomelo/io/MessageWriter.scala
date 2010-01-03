@@ -19,8 +19,8 @@
 
 package org.pomelo.io
 
-import org.pomelo.message.Message
+import org.pomelo.message.Serializable
 
 abstract class MessageWriter {
-    def write(message: Message)
+    def write(message: Serializable)
 }

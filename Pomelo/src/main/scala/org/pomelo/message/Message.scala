@@ -43,7 +43,7 @@ abstract class Message(mesgType : Byte, messageId : Int) {
   /**
    * encode the message into an ArrayBuffer
    */
-  def encode() : ArrayBuffer[Byte]
+  //def encode() : ArrayBuffer[Byte]
 }
 
 object Message extends MessageProperties {
@@ -61,11 +61,5 @@ object Message extends MessageProperties {
                     null
                     }
         }
-    }
-
-    def encodeHeader(message: Message, encoder: MessageEncoder) = {
-        encoder.append(message.payloadLength)
-        encoder.append(message.msgType)
-        encoder.append(message.id)
     }
 }

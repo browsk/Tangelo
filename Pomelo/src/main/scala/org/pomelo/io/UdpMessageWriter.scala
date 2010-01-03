@@ -19,7 +19,9 @@
 
 package org.pomelo.io
 
-import message.Message
+import message.MessageEncoder
+import message.Serializable
+
 import utils.PomeloLoggerFactory
 
 import java.net._
@@ -29,8 +31,8 @@ object UdpMessageWriter {
 }
 
 class UdpMessageWriter(destination: SocketAddress) extends MessageWriter {
-    def write(message: Message) = {
-        val data = message.encode().toArray[Byte]
+    def write(message: Serializable) = {
+        val data = (new MessageEncoder(message)).encode().toArray[Byte]
         val packet = new DatagramPacket(data, data.length, destination)
 
         val logger = PomeloLoggerFactory.getLoggerForName("UDP")

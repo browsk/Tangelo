@@ -7,7 +7,7 @@ package org.pomelo.message
 
 import org.pomelo.server.Settings
 
-class DiscoveryResponse(query : DiscoveryQuery) extends Message(91, query.id) {
+class DiscoveryResponse(query : DiscoveryQuery) extends Message(91, query.id)  with Serializable {
     abstract case class DiscoveryQueryType() extends MessageType(91)
     //type MessageType = DiscoveryQueryType
 
@@ -16,18 +16,9 @@ class DiscoveryResponse(query : DiscoveryQuery) extends Message(91, query.id) {
                 Message.encodedStringLength(Settings.ADDRESS) +
                 Message.encodedStringLength(Settings.COMMENT) +
                 Message.encodedStringLength(Settings.VERSION)
-            
-    override def encode() = {
-    
-        val encoder = new MessageEncoder
-        encoder.append(payloadLength)
-        encoder.append(msgType)
-        encoder.append(id)
-        encoder.append(Settings.ADDRESS)
-        encoder.append(Settings.PORT)
-        encoder.append(Settings.VERSION)
-        encoder.append(Settings.COMMENT)
 
-        encoder.buffer
+
+    override def sequence() = {
+        List[Any](payloadLength, msgType, id, Settings.ADDRESS, Settings.PORT, Settings.VERSION, Settings.COMMENT)
     }
 }

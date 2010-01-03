@@ -35,7 +35,7 @@ class DiscoveryResponseSpec extends Spec with ShouldMatchers{
         }
 
         describe ("when encoded the buffer") {
-            val buffer = discoveryResponse.encode
+            val buffer = (new MessageEncoder(discoveryResponse)).encode
             it ("should have a length of " + expectedLength) {
                 buffer should have length (expectedLength)
             }

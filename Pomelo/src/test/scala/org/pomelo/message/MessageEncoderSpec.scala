@@ -9,10 +9,9 @@ import org.scalatest.Spec
 import org.scalatest.matchers.ShouldMatchers
 
 class MessageEncoderSpec extends Spec with ShouldMatchers {
-
     describe("A MessageEncoder") {
         describe("appending a single integer (0)") {
-            val encoder = new MessageEncoder
+            val encoder = new MessageEncoder(null)
             encoder.append(0)
 
             it ("should result in a buffer of length 4") {
@@ -31,7 +30,7 @@ class MessageEncoderSpec extends Spec with ShouldMatchers {
         val testDataB = 0xdeadbeef
 
         describe("appending a single integer : " + testDataA) {
-            val encoder = new MessageEncoder
+            val encoder = new MessageEncoder(null)
             encoder.append(testDataA)
 
             it ("should result in a buffer of length 4") {
@@ -47,7 +46,7 @@ class MessageEncoderSpec extends Spec with ShouldMatchers {
         }
 
         describe("appending two consecutive integers : " + testDataA + "," + testDataB) {
-            val encoder = new MessageEncoder
+            val encoder = new MessageEncoder(null)
             encoder.append(testDataA)
             encoder.append(testDataB)
 
@@ -71,7 +70,7 @@ class MessageEncoderSpec extends Spec with ShouldMatchers {
 
         describe("appending the string '" + string + "'") {
             val expectedLength = 4 + string.length
-            val encoder = new MessageEncoder
+            val encoder = new MessageEncoder(null)
             encoder.append(string)
 
             it ("should result in a buffer of length " + expectedLength) {
@@ -92,7 +91,7 @@ class MessageEncoderSpec extends Spec with ShouldMatchers {
 
         describe("appending a string followed by an int") {
             val expectedLength = 4 + string.length + 4
-            val encoder = new MessageEncoder
+            val encoder = new MessageEncoder(null)
             encoder.append(string)
             encoder.append(10)
 
@@ -118,7 +117,7 @@ class MessageEncoderSpec extends Spec with ShouldMatchers {
         }
 
         describe("appending a byte") {
-            val encoder = new MessageEncoder
+            val encoder = new MessageEncoder(null)
             val b : Byte = 100
             encoder.append(b)
             it ("should result in a buffer length of 1") {
@@ -131,7 +130,7 @@ class MessageEncoderSpec extends Spec with ShouldMatchers {
         }
 
         describe("appending a byte followed by an int") {
-            val encoder = new MessageEncoder
+            val encoder = new MessageEncoder(null)
             val b : Byte = 10
             val i : Int = 13
             encoder.append(b)
@@ -150,7 +149,7 @@ class MessageEncoderSpec extends Spec with ShouldMatchers {
         }
 
         describe("appending an empty string") {
-            val encoder = new MessageEncoder
+            val encoder = new MessageEncoder(null)
 
             encoder.append("")
 
@@ -168,7 +167,7 @@ class MessageEncoderSpec extends Spec with ShouldMatchers {
 
         describe("appending an unsupported reference type") {
             it ("should throw an IllegalArgumentException") {
-                val encoder = new MessageEncoder
+                val encoder = new MessageEncoder(null)
 
                 evaluating {encoder.append(encoder)} should produce [IllegalArgumentException]
             }
@@ -176,7 +175,7 @@ class MessageEncoderSpec extends Spec with ShouldMatchers {
 
         describe("appending an unsupported value type") {
             it ("should throw an IllegalArgumentException") {
-                val encoder = new MessageEncoder
+                val encoder = new MessageEncoder(null)
                 val double : Double = 0.0
                 evaluating {encoder.append(double)} should produce [IllegalArgumentException]
             }

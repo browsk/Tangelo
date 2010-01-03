@@ -22,6 +22,7 @@ package org.pomelo.command
 import io.MessageWriter
 import message.Ok
 import message.Null
+import message.MessageEncoder
 
 class NullCommand(message: Null, writer: MessageWriter) extends Command {
     override def execute() = {
