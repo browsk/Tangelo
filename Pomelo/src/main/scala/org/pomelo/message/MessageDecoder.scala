@@ -3,7 +3,7 @@ package org.pomelo.message
 import scala.collection.mutable.Buffer
 import scala.StringBuilder
 
-class MessageDecoder(data : Buffer[Byte]) {
+class MessageDecoder(data : Seq[Byte]) {
     val buffer = data
 
     val it : Iterator[Byte] = data.elements
