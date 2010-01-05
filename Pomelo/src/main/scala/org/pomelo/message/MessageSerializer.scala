@@ -12,7 +12,7 @@ import scala.collection.mutable.Buffer
 class MessageSerializer(message: Serializable) extends Serializer {
 
     def encode() : Buffer[Byte] = {
-        message.sequence.foreach(item => append(item))
+        message.packSequence.foreach(item => append(item))
         buffer
     }
 }

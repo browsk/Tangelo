@@ -28,7 +28,7 @@ class DiscoveryQuery(id: Int, version : String) extends Message(90, id) with Ser
 
     val clientVersion = version
 
-    override def sequence() = {
+    override def packSequence() = {
         List[Any](payloadLength, msgType, id, clientVersion)
     }
 

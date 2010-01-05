@@ -13,7 +13,7 @@ class Null(id: Int) extends Message(10, id) with Serializable {
     
     override def length = Message.headerLength
 
-    override def sequence() = {
+    override def packSequence() = {
         List[Any](payloadLength, msgType, id)
     }
 }

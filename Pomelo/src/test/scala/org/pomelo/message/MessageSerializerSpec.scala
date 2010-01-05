@@ -8,7 +8,7 @@ import org.scalatest.Spec
 import org.scalatest.matchers.ShouldMatchers
 
 class TestClass extends Serializable {
-    def sequence() = List[Any](22.asInstanceOf[Byte], 43, "hello")
+    def packSequence() = List[Any](22.asInstanceOf[Byte], 43, "hello")
 }
 
 class MessageSerializerSpec extends Spec with ShouldMatchers {

@@ -22,7 +22,7 @@ package org.pomelo.message
 class Ok(id: Int) extends Message(1, id) with Serializable {
     def length = Message.headerLength
     
-    def sequence() = {
+    def packSequence() = {
         List[Any](payloadLength, msgType, id)
     }
 }

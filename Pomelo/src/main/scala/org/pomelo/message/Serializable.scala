@@ -20,5 +20,5 @@
 package org.pomelo.message
 
 trait Serializable {
-    def sequence() : Seq[Any]
+    def packSequence() : Seq[Any]
 }

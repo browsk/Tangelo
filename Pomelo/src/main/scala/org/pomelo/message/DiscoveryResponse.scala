@@ -18,7 +18,7 @@ class DiscoveryResponse(query : DiscoveryQuery) extends Message(91, query.id)  w
                 Message.encodedStringLength(Settings.VERSION)
 
 
-    override def sequence() = {
+    override def packSequence() = {
         List[Any](payloadLength, msgType, id, Settings.ADDRESS, Settings.PORT, Settings.VERSION, Settings.COMMENT)
     }
 }
