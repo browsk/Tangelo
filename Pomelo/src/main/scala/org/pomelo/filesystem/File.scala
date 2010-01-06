@@ -19,6 +19,19 @@
 
 package org.pomelo.filesystem
 
-class File(name: String, size: Int) extends DirectoryItem(name, ItemAttribute.File, size) {
-    def this(name: String) = this(name, -1)
+class File(name: String, fullPath: String, size: Int) extends DirectoryItem(name, ItemAttribute.File, size) {
+    val path = fullPath
+    
+    def this(name: String, fullPath: String) = this(name, fullPath, -1)
+
+    override def hashCode = fullPath.hashCode
+
+    override def equals(other: Any) = other match {
+        case that: Directory => (that canEqual this) && 
+            (this.path == that.path) &&
+            (this.name == that.name)
+        case _ =>false
+    }
+
+    def canEqual(other: Any) = other.isInstanceOf[Directory]
 }

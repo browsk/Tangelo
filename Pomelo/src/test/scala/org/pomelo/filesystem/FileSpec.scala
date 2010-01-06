@@ -24,7 +24,15 @@ import org.scalatest.matchers.ShouldMatchers
 
 class FileSpec extends Spec with ShouldMatchers {
     describe("A File instance constructed without a size") {
-        val file : File = new File("test.mp3")
+        val file : File = new File("test.mp3", "c:\fullpath")
+
+        it("should have a name of test.mp3") {
+            file.name should equal("test.mp3")
+        }
+
+        it("should have a attribute of File") {
+            file.attribute should equal(ItemAttribute.File)
+        }
 
         describe("when converted to XML") {
             val xml = file.toXML
@@ -44,7 +52,7 @@ class FileSpec extends Spec with ShouldMatchers {
     }
 
     describe("A File instance constructed with a size of 1024") {
-        val file : File = new File("test.mp3", 1024)
+        val file : File = new File("test.mp3", "c:\fullpath", 1024)
 
         describe("when converted to XML") {
             val xml = file.toXML

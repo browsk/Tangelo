@@ -19,8 +19,12 @@
 
 package org.pomelo.filesystem
 
-abstract class DirectoryItem(name: String, attribute: ItemAttribute.Value, size: Int) {
+abstract class DirectoryItem(itemName: String, itemAttribute: ItemAttribute.Value, itemSize: Int) {
 
+    val name = itemName
+    val attribute = itemAttribute
+    val size = itemSize
+    
     def this(name: String, attribute: ItemAttribute.Value) = this(name, attribute, -1)
 
     def toXML =
